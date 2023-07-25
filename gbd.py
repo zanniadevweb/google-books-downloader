@@ -42,8 +42,8 @@ def get_book_data(url):
     driver.get(url)
     driver.refresh()
     sleep(3)
-    title = driver.find_element_by_class_name("gb-volume-title").text
-    author = driver.find_element_by_class_name("addmd").text
+    title = driver.find_element("name","gb-volume-title").text
+    author = driver.find_element("name","addmd").text
     
     return f"{title} (b{author[1:]})"
 
@@ -57,8 +57,8 @@ def capture_requests(url):
     sleep(5)
     checkpoint = ""
     
-    while checkpoint != driver.find_element_by_class_name("pageImageDisplay"):
-        checkpoint = driver.find_element_by_class_name("pageImageDisplay")
+    while checkpoint != driver.find_element("name","pageImageDisplay"):
+        checkpoint = driver.find_element("name","pageImageDisplay")
         checkpoint.click()
         # scrolling ~25 pages
         for i in range(25):
